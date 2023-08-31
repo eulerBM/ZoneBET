@@ -1,0 +1,34 @@
+
+#body {
+    background-color: rgb(36, 36, 53);
+}
+
+
+#navbar01 {
+    background-color: rgb(29, 29, 29); 
+    
+}
+
+#titulo {
+    color: rgb(132, 0, 255); 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-style: outset;
+    border-color: red; 
+}
+
+#image01 {
+    width: 50px; 
+    height: auto; /* Mantém a proporção original da imagem */
+}
+
+.table {
+    --bs-table-bg: #cccccc; /* Define a cor de fundo da tabela */
+    --bs-table-color:  #000000;
+    --bs-table-border-color: #a200ff;
+    
+  }
+
+.container{
+    --bs-gutter-x: 10rem;
+
+  }
