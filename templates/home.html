@@ -30,7 +30,6 @@
                 <li class="nav-item">
 
                     <a href="{% url 'perfil' %}" class="btn btn-outline-primary">Perfil</a>
-                    <a href="{% url 'perfil' %}" class="btn btn-outline-primary">Depósito</a>
                     <a href="{% url 'perfil' %}" class="btn btn-outline-primary">Saque</a>
                      <button type="button" class="btn btn-outline-warning">{{ saldo }}</button>                      
                     
@@ -66,16 +65,16 @@
                 <tr>
                     <th scope="row">{{ games.date|date:"d/m/y" }} <br> {{ games.date.time|time:"h:i A" }}</th>
 
-                    <td> {{ games.team1 }} <br>  X2.4 </td>
+                    <td> {{ games.team1 }} <br>  2.4 </td>
 
-                    <td>Empate <br>  X3.7 </td>
+                    <td>Empate <br>  3.7 </td>
 
-                    <td> {{ games.team2 }} <br>  X1.2 </td>
+                    <td> {{ games.team2 }} <br>  1.2 </td>
                         
                         
                     <td> {{ games.status }} </td>
 
-                    <td><button type="button" class="btn btn-success">Apostar</button></td>
+                    <td><a href="{% url 'aposta' games.id %}" class="btn btn-success">Apostar</a></td>
                 </tr>
                 </tbody>
                 

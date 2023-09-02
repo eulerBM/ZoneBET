@@ -1,17 +1,12 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from datetime import date
 from home.models import Jogo
+from home.utils import user_on
 
 def home(request):
 
     jogo_do_dia = Jogo.objects.all()
 
-    if request.user.is_authenticated:
-        saldo = request.user.user.money
-    
-    else:
-        saldo = 0
+    saldo = user_on(request.user)
 
     context = {
         'game': jogo_do_dia,  
@@ -20,6 +15,6 @@ def home(request):
 
     return render (request,'home.html', context)
 
-@login_required
-def perfil(request):
-    return render (request, 'perfil/perfil.html')
+
+
+

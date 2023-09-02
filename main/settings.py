@@ -26,6 +26,9 @@ INSTALLED_APPS = [
 
     #My Apss
     'home',
+    'aposta',
+    'perfil',
+    
     #Maney Django
     'djmoney',
 ]

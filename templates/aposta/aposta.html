@@ -1,0 +1,50 @@
+{% extends 'home.html' %}
+{% block conteudo %}
+{% load static %}
+
+<link href=" {% static 'aposta.css' %}" rel="stylesheet">
+    <div class="container mt-5" id="base">
+
+        <form class="container text-center" method="POST">
+
+          {% csrf_token %}
+
+          <h1>{{ game }}</h1>
+          <p>{{ game.date|date:"d/m/y" }} <br>{{ game.date.time|time:"h:i A" }}</p>
+
+          <div class="row row-cols-1">
+
+            <div class="col-md-6 offset-md-3 mb-4">
+                <label for="validationDefault04" class="form-label">Apostar em:</label>
+                <select class="form-select" id="validationDefault04" required name="escolha">
+                  <option selected disabled value="">...</option>
+                  <option>{{ game.team1 }}</option>
+                  <option>Empate</option>
+                  <option>{{ game.team2 }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 offset-md-3 mb-4">
+                <label for="validationDefault04" class="form-label">Método de pagamento:</label>
+                <select class="form-select" id="validationDefault04" required name="pagamento">
+                  <option>Pix</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 offset-md-3 mb-4">
+              <label for="validationDefault01" class="form-label">Valor :</label>
+              <input type="text" class="form-control" id="validationDefault01" placeholder="Valor"  required name="valor">
+            </div>
+
+            <div class="col-12 mt-3">
+              <button class="btn btn-success" type="submit">Confirmar Aposta</button>
+            </div>
+
+          </div>
+            
+        </form>
+
+          
+
+    </div>
+{% endblock %}
