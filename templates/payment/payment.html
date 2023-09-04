@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    
+    
+</head>
+<body>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        const mp = new MercadoPago("TEST-4cbb9ec7-5324-4597-84ac-e24f981dc572");
+    </script>
+
+
+    <h1>-------------------------------------</h1>
+
+    
+
+    <img width="20%" height="20%" src='data:image/png;base64,{{ pix }}' alt="">
+
+    <label for="copiar">Copiar Hash:</label>
+    <input type="text" id="copiar"  value='{{ pix_copiar }}'/>
+
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+    
+
+    
+    
+
+
+    <!-- JS proprios -->
+    <script src="{% static 'js/payment.js' %}"></script>
+
+</body>
+</html>

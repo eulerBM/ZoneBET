@@ -3,34 +3,46 @@ from django.contrib.auth.decorators import login_required
 from home.utils import user_on
 from home.models import Jogo
 from aposta.models import aposta
+from django.contrib import messages
+from django.contrib.messages import constants
+from aposta.forms import form_aposta, form_validação
 
 @login_required
 def page_aposta(request, id):
+    game = Jogo.objects.get(id=id)
 
     if request.method == 'GET':
+
         saldo = user_on(request.user)
 
-        game = Jogo.objects.get(id=id)
 
         context = { 
             'saldo': saldo,
             'game': game,
-            
+            'form': form_aposta(times=[game.team1, 'Empate', game.team2]),   
+            'erro': form_validação.errors,     
         }
+
         return render (request, 'aposta/aposta.html', context)
     
     else:
-        print(request.POST)
-        game = Jogo.objects.get(id=id)
 
-        create_aposta = aposta.objects.create(
-            jogo=game,
-            escolha=request.POST.get('escolha'),
-            valor=request.POST.get('valor'),
-            user=request.user,
+        form = form_validação(request.POST)
 
-        )
+        if form.is_valid():
 
-        return redirect('home')
+            aposta.objects.create(
+                jogo=game,
+                escolha=form.cleaned_data['escolha'],
+                método=form.cleaned_data['metodo'],
+                valor=form.cleaned_data['valor'],
+                user=request.user
+            )
+
+            return redirect('home')  
+
+        else:
+            messages.add_message(request, constants.ERROR, form.errors)
+            return redirect('aposta', id)
        
 

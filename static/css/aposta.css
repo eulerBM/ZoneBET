@@ -1,0 +1,15 @@
+#base {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding-bottom: 10%;
+}
+
+.list-error {
+    padding: 0;
+}
+
+.list-error li {
+    list-style-type: none;
+    margin-bottom: 5px; /* Ajuste o espaçamento conforme necessário */
+}

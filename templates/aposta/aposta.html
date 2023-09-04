@@ -1,11 +1,16 @@
 {% extends 'home.html' %}
 {% block conteudo %}
 {% load static %}
+{% load widget_tweaks %}
+<link href=" {% static 'css/aposta.css' %}" rel="stylesheet">
 
-<link href=" {% static 'aposta.css' %}" rel="stylesheet">
+
+
+
     <div class="container mt-5" id="base">
+      
 
-        <form class="container text-center" method="POST">
+        <form class="container text-center" method="POST" action="{% url 'pix' %}">
 
           {% csrf_token %}
 
@@ -16,24 +21,36 @@
 
             <div class="col-md-6 offset-md-3 mb-4">
                 <label for="validationDefault04" class="form-label">Apostar em:</label>
-                <select class="form-select" id="validationDefault04" required name="escolha">
-                  <option selected disabled value="">...</option>
-                  <option>{{ game.team1 }}</option>
-                  <option>Empate</option>
-                  <option>{{ game.team2 }}</option>
-                </select>
+
+                {% render_field form.escolha type="text" class="form-select" id="validationDefault04" %}
+
             </div>
 
             <div class="col-md-6 offset-md-3 mb-4">
                 <label for="validationDefault04" class="form-label">Método de pagamento:</label>
-                <select class="form-select" id="validationDefault04" required name="pagamento">
-                  <option>Pix</option>
-                </select>
-            </div>
+
+                {% render_field form.metodo type="text" class="form-select" id="validationDefault04" %} 
+                
+              </div>
 
             <div class="col-md-6 offset-md-3 mb-4">
               <label for="validationDefault01" class="form-label">Valor :</label>
-              <input type="text" class="form-control" id="validationDefault01" placeholder="Valor"  required name="valor">
+
+              {% render_field form.valor type="text" class="form-control" id="validationDefault01" placeholder="Valor"  %} 
+              <p>Apostas somente acima de R$ 10</p>
+
+              {% if messages %}
+                <ul class="list-error">
+                  
+                  {% for message in messages %}
+                    <div class="alert {{message.tags}}">
+                      <li> {{ message }}</li>
+                    </div>
+                  {% endfor %}    
+                </ul>
+              {% endif %}
+
+              
             </div>
 
             <div class="col-12 mt-3">
@@ -41,10 +58,14 @@
             </div>
 
           </div>
-            
+          
         </form>
 
-          
-
     </div>
+
+    
+
+     <!-- JS proprios -->
+     <script src="{% static 'js/aposta.js' %}"></script>
+
 {% endblock %}
