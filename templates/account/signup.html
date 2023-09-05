@@ -1,0 +1,32 @@
+{% load i18n %}
+{% block content %}
+{% load static %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href=" {% static 'css/account/login.css' %}" rel="stylesheet">
+
+<div class="page" >
+  <form method="POST" class="formLogin" id="signup_form"  action="{% url 'account_signup' %}">
+    {% csrf_token %}
+      <h1>Cadastro</h1>
+      <p>Digite os seus dados de acesso no campo abaixo.</p>
+      <label for="email">E-mail</label>
+      {{ form.email }}
+      <label for="Username">Username</label>
+      {{ form.username }}
+      <label for="password">Senha</label>
+      {{ form.password1 }}
+      <label for="password">Senha (novamente)</label>
+      {{ form.password2 }}
+      
+      
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+      <p>{% blocktrans %}Já tem uma conta? Então <a href="{{ login_url }}">faça login</a>.{% endblocktrans %}</p>
+      
+  </form>
+</div>
+  
+{% endblock %}

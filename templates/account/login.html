@@ -1,0 +1,32 @@
+<div class="page" >
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+{% get_providers as socialaccount_providers %}
+
+
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href=" {% static 'css/account/login.css' %}" rel="stylesheet">
+
+  <form method="POST" class="formLogin"  action="{% url 'account_login' %}">
+    {% csrf_token %}
+      <h1>Login</h1>
+      <p>Digite os seus dados de acesso no campo abaixo.</p>
+      <label for="email">E-mail</label>
+      {{ form.login }}
+      <label for="password">Senha</label>
+      {{ form.password}}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <a href="{% url 'account_reset_password' %}">Esqueci minha senha</a>
+      <button class="btn" type="submit">{% trans "Sign In" %}</button>
+      <p>{% blocktrans %}Se você ainda não criou uma conta, por favor
+        <a href="{{ signup_url }}">inscreva-se</a>{% endblocktrans %}</p>
+  </form>
+
+</div>
+
+{% endblock %}

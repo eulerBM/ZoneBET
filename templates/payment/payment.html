@@ -18,29 +18,15 @@
 
     <h1>-------------------------------------</h1>
 
-    
+    {{ pix }}
+
+    ----------------------------------------
+    <p>Link = {{ link }}</p>
 
     <img width="20%" height="20%" src='data:image/png;base64,{{ pix }}' alt="">
 
     <label for="copiar">Copiar Hash:</label>
     <input type="text" id="copiar"  value='{{ pix_copiar }}'/>
-
-    
-    
-    
-
-
-
-    
-
-    
-
-    
-    
-
-    
-    
-
 
     <!-- JS proprios -->
     <script src="{% static 'js/payment.js' %}"></script>
