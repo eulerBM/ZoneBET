@@ -14,7 +14,7 @@
 
 </head>
   
-<body id="body">
+<body>
 
     <div id="navbar01">
         <nav class="navbar navbar-expand-lg bg-body-tertiary--bs-body-color" id="navbar01" >
@@ -36,8 +36,7 @@
                 </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Procurar</button>
+                    <input id="inputtext" class="form-control me-2" type="search" placeholder="Procurar jogo" aria-label="Search">
                 </form>
             </div>
             </div>
@@ -45,6 +44,12 @@
     </div>
 
     {% block conteudo %}
+
+    
+    
+    <div class="container mt-5" id="titulo02">
+        <h1 class="fade-in">Jogos Hoje</h1>
+    </div>
 
         <div class="container mt-5">
             <table class="table">
@@ -62,19 +67,39 @@
             {% for games in game %}
 
                 <tbody>
-                <tr>
+                <tr id="listaItens">
+
                     <th scope="row">{{ games.date|date:"d/m/y" }} <br> {{ games.date.time|time:"h:i A" }}</th>
 
-                    <td> {{ games.team1 }} <br>  2.4 </td>
+                    <td class="time1">{{ games.team1 }} </td>
 
                     <td>Empate <br>  3.7 </td>
 
-                    <td> {{ games.team2 }} <br>  1.2 </td>
+                    <td class="time2"> {{ games.team2 }} </td>
                         
-                        
-                    <td> {{ games.status }} </td>
+                    {% if games.status == 'Ativo' %}
+                    <td id="status-ativo">
+                        {{ games.status }}
+                    </td>
+                    {% elif games.status == 'Em jogo' %}
+                    <td id="status-em-jogo">
+                        {{ games.status }}
+                    </td>
+                    {% else %}
+                    <td id="status-fechado">
+                        {{ games.status }}
+                    </td>
+                    {% endif %}
 
-                    <td><a href="{% url 'aposta' games.id %}" class="btn btn-success">Apostar</a></td>
+                    {% if games.status == 'Ativo' %}
+
+                        <td><a href="{% url 'aposta' games.id %}" class="btn btn-outline-success" >Apostar</a></td>
+
+                    {% else %}
+
+                        <td><a class="btn btn-outline-success" disabled>Fechado</a></td>
+
+                    {% endif %}
                 </tr>
                 </tbody>
                 
@@ -88,4 +113,5 @@
     
     
 </body>
+<script src="{% static 'js/home.js' %}"></script>
 </html>

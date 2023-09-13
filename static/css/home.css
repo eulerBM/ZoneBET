@@ -1,11 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-#body {
-    background-color: rgb(36, 36, 53);
+.fade-in {
+    animation: fadeInAnimation 2s ease-in-out forwards infinite;
+    opacity: 0; /* Começa com opacidade zero para o efeito de desvanecimento */
+
 }
 
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0; /* Opacidade inicial (0) */
+    }
+    50% {
+        opacity: 1; /* Opacidade intermediária (1) - meio da animação */
+    }
+    100% {
+        opacity: 0; /* Opacidade final (0) */
+    }
+}
+
+#status-ativo {
+    color: green; /* Texto verde para status ativo */
+
+}
+
+#status-em-jogo {
+    color: rgb(251, 255, 0); /* Texto verde para status ativo */
+}
+
+#status-fechado {
+    color: red; /* Texto vermelho para status fechado */
+}
+
+#titulo02 {
+    text-align: center;
+}
 
 #navbar01 {
     background-color: rgb(29, 29, 29); 
+    position: static;
     
 }
 
@@ -14,16 +46,17 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-style: outset;
     border-color: red; 
+
 }
 
 #image01 {
     width: 50px; 
     height: auto; /* Mantém a proporção original da imagem */
+
 }
 
 .table {
     --bs-table-bg: #cccccc; /* Define a cor de fundo da tabela */
-    --bs-table-color:  #000000;
     --bs-table-border-color: #a200ff;
     
   }
@@ -32,3 +65,35 @@
     --bs-gutter-x: 10rem;
 
   }
+
+  h1, p{
+    color: #ffffff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #023047;
+    background-color: #480ca8;
+       
+}
+
+.btn {
+    background-color: #f72585;
+    height: 40px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #ff0676;
+    font-size: 20px;
+}

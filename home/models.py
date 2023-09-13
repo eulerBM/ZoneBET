@@ -5,7 +5,6 @@ from django.db import models
 class Jogo(models.Model):
     choices_status = (
         ('Ativo', 'Ativo'),
-        ('Em jogo', 'Em jogo'),
         ('Fechado', 'Fechado'),
     )
 

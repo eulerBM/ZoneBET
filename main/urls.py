@@ -11,5 +11,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('perfil/', perfil, name='perfil'),
     path('aposta/<int:id>', page_aposta, name='aposta'),
-    path('pix/', process_pix, name='pix'),
+    path('pix/<int:id>', process_pix, name='pix'),
 ]

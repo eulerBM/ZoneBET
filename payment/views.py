@@ -1,10 +1,28 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.messages import constants
 import mercadopago
+from home.models import Jogo
+import datetime
 from decouple import config
 
 @login_required
-def process_pix(request):
+def process_pix(request, id):
+
+    pc = datetime.datetime.now().strftime('%H') #Hora do pc
+    game = Jogo.objects.get(id=id) #Hora do jogo começar
+
+    if pc >= game.date.strftime('%H'):
+        if game.status == 'Ativo':
+            game.status = 'Fechado'
+            game.save()
+            messages.add_message(request, constants.ERROR, 'Apostas estão encerradas')
+            return redirect ('home')
+        else:
+            messages.add_message(request, constants.ERROR, 'Apostas estão encerradas')
+            return redirect ('home')
+
     if request.method == 'POST':
 
         valor = float(request.POST.get('valor'))

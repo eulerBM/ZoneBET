@@ -4,11 +4,6 @@ from djmoney.models.fields import MoneyField
 from home.models import Jogo
 
 class aposta(models.Model):
-    choices_status = (
-        ('Ativo', 'Ativo'),
-        ('Em jogo', 'Em jogo'),
-        ('Fechado', 'Fechado'),
-    )
 
     jogo = models.ForeignKey(Jogo, on_delete=models.CASCADE)
     escolha = models.CharField(max_length=50)

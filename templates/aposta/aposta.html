@@ -5,12 +5,12 @@
 <link href=" {% static 'css/aposta.css' %}" rel="stylesheet">
 
 
-
-
     <div class="container mt-5" id="base">
       
 
-        <form class="container text-center" method="POST" action="{% url 'pix' %}">
+        <form class="container text-center" method="POST" action="{% url 'pix' game.id %}">
+
+          
 
           {% csrf_token %}
 
@@ -54,12 +54,14 @@
             </div>
 
             <div class="col-12 mt-3">
-              <button class="btn btn-success" type="submit" >Confirmar Aposta</button>
+              <button class="btn btn-success" id='bt1' type="submit" >Confirmar Aposta</button>
             </div>
 
           </div>
         </form>
     </div>
+
+    
 
      <!-- JS proprios -->
      <script src="{% static 'js/aposta.js' %}"></script>

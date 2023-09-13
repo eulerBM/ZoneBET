@@ -1,9 +1,107 @@
 {% extends 'home.html' %}
-
 {% block conteudo %}
+{% load static %}
 
-    <h1>Perfil do Usuario!</h1>
+<link href=" {% static 'css/perfil.css' %}" rel="stylesheet">
+
+<!-- JS proprios -->
+<script src="{% static 'js/perfil.js' %}"></script>
+
+    
+    <div class="page" >
+        <div id="caixa-de-mensagens">
+            {% if messages %}
+                <ul class="list-error">
+                    <button id="botao1" onclick="minhaFuncao()">X</button>
+                    {% for message in messages %}
+                        <div class="alert {{message.tags}}">
+                            <li>{{ message }}</li>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="container">
+
+            <form method="POST" class="formLogin"  >
+                {% csrf_token %}
+
+                {% if request.user %}
+
+                <label for="email">Username</label>
+                <input type="text" name="username" id="" value="{{ request.user }}" disabled>
+
+                {% else %}
+
+                <label for="email">Username</label>
+                <input type="text" name="username" id="" placeholder="preencher este campo">
+
+                {% endif %}
+
+                {% if request.user.email %}
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="" value="{{ request.user.email }}" disabled>
+
+                {% else %}
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="" placeholder="preencher este campo">
+
+                {% endif %}
+
+                {% if request.user.first_name %}
+
+                <label for="email">Primeiro nome</label>
+                <input type="text" name="nome1" id="" value="{{ request.user.first_name }}" disabled>
+
+                {% else %}
+
+                <label for="email">Primeiro nome</label>
+                <input type="text" name="nome1" id="" placeholder="preencher este campo">
+
+                    <div class="container">
+
+                        
+                    </div>
+
+                {% endif %}
+
+                {% if request.user.last_name %}
+
+                <label for="email">Sobrenome</label>
+                <input type="text" name="nome2" id="" value="{{ request.user.last_name }}" disabled>
+
+                {% else %}
+
+                <label for="email">Sobrenome</label>
+                <input type="text" name="nome2" id="nome2" placeholder="preencher este campo">
+
+                {% endif %}
+
+                <label for="email">Conta Criada</label>
+                <input type="datetime" value="{{ request.user.date_joined }}" disabled>
+
+                {% if request.user.first_name %}
+                
+                    <button class="btn" type="submit" disabled>Dados 100% preenchidos</button>
+
+                {% else %}
+
+                    <button class="btn" type="submit">Atualizar dados</button>
+
+                {% endif %}
+                
+            </form>
+
+        </div>
+    </div>
 
 {% endblock %}
+
+
+
+
 
     
